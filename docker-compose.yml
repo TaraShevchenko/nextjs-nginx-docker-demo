@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  auth-backend:
+    build:
+      context: ./auth-backend
+    ports:
+      - "3001:3001"
+    networks:
+      - dev
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    networks:
+      - dev
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge
